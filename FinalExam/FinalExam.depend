@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1578061536 source:c:\users\saber\desktop\finalexam\src\constructor.cpp
+	<iostream>
+
+1578061097 source:c:\users\saber\desktop\finalexam\src\array.cpp
+	<iostream>
+
+1578075551 source:c:\users\saber\desktop\finalexam\src\bullshit.cpp
+	<iostream>
+	<iomanip>
+
+1578075982 source:c:\users\saber\desktop\finalexam\src\oddoreven.cpp
+	<iostream>
+	<iomanip>
+
+1578090013 source:c:\users\saber\desktop\finalexam\src\highestnumber.cpp
+	<iostream>
+
