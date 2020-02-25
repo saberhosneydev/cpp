@@ -1,0 +1,57 @@
+<!DOCTYPE DOC_EDPCS>
+<DOC_EDPCS>
+ <sect type="prs" >-- NOTES
+While providing array , it should be sorted asc.
+then finding the left position and right position of it
+Getting or providing the search value that will be used or inteted to be found</sect>
+ <sect type="pcs" >
+  <bl>
+   <ps type="anyop" >
+    <le>array</le>
+   </ps>
+   <ps type="anyop" >
+    <le>left, right&amp;  Search value</le>
+   </ps>
+   <ps type="lpfor" >
+    <le>array</le>
+    <bl>
+     <ps type="anyop" >
+      <le>mid = left+right/2</le>
+     </ps>
+     <ps type="ifthn" >
+      <le>value = array[mid]</le>
+      <bl>
+       <ps type="anyop" >
+        <le>print found on location</le>
+       </ps>
+       <ps type="anyop" >
+        <le>break</le>
+       </ps>
+      </bl>
+     </ps>
+     <ps type="iftls" >
+      <le>value  > array[mid]</le>
+      <bl>
+       <ps type="anyop" >
+        <le>left = mid +1</le>
+       </ps>
+      </bl>
+      <bl>
+       <ps type="anyop" >
+        <le>right = mid -1</le>
+       </ps>
+      </bl>
+     </ps>
+    </bl>
+   </ps>
+   <ps type="ifthn" >
+    <le>left > right</le>
+    <bl>
+     <ps type="anyop" >
+      <le>print not found</le>
+     </ps>
+    </bl>
+   </ps>
+  </bl>
+ </sect>
+</DOC_EDPCS>
