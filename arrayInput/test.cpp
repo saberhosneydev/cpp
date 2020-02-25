@@ -1,18 +1,43 @@
 #include <iostream>
+#include <vector>
+#include <ios>
+#include <limits>
+#include <sstream>
 
 using namespace std;
 
-int main(){
+int main()
+{
 
-    cout << "Enter your desired amount of numbers , Type F to continue ." << endl;
-    int value, counter;
-    int arr[];
-    while(true){
-        cin >> value;
-        cout << x;
-        if(cin.fail()){
+    vector<int> arr;
+    int value;
+    string exitLoop;
+    bool x;
+    while (1)
+    {
+        while (!(cin >> value))
+        {
+            stringstream ss;
+            ss << value;
+            ss >> exitLoop;
+            if (exitLoop=="exit")
+            {
+                x = false;
+                break;
+            }
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input.  Try again: ";
+        }
+        if(x == false){
             break;
         }
+        arr.push_back(value);
+    }
+
+    for (int loop = 0; loop < arr.size(); loop++)
+    {
+
     }
     return 0;
 }
