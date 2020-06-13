@@ -1,148 +1,148 @@
 #include <iostream>
 using namespace std;
 
-class Node {
+class unrolledNode {
 public:
-    int data[10] = {};
-    Node* next = NULL;
+    int unrolledArray[10] = {};
+    unrolledNode* next = NULL;
 
-    Node(int arr[]) {
-        for (int i = 0; i < 10; ++i)
+    unrolledNode(int givenArray[]) {
+        for (int iterator = 0; iterator < 10; ++iterator)
         {
-            if (arr[i] != NULL)
+            if (givenArray[iterator] != NULL)
             {
-                this->data[i] = arr[i];
+                this->unrolledArray[iterator] = givenArray[iterator];
             }
         }
     }
-    void print_list(){
-        Node* n = this;
-        while (n != NULL){
-            for (int i = 0; i < 10; ++i)
+    void print_unrolled_list(){
+        unrolledNode* current_unrolledNode = this;
+        while (current_unrolledNode != NULL){
+            for (int iterator = 0; iterator < 10; ++iterator)
             {
-                if (n->data[i] != NULL)
+                if (current_unrolledNode->unrolledArray[iterator] != NULL)
                 {
-                    cout << n->data[i] << " ";
+                    cout << current_unrolledNode->unrolledArray[iterator] << " ";
                 }
             }
 
-            n = n->next;
+            current_unrolledNode = current_unrolledNode->next;
             cout << endl;
         }
 
     }
-    void insertion(int arr[]) {
-        Node* n = this;
-        while (n->next != NULL) {
-            n = n->next;
+    void insert_at_end(int givenArray[]) {
+        unrolledNode* current_unrolledNode = this;
+        while (current_unrolledNode->next != NULL) {
+            current_unrolledNode = current_unrolledNode->next;
         }
-        Node* newItem = new Node(arr);
-        n->next = newItem;
+        unrolledNode* newItem = new unrolledNode(givenArray);
+        current_unrolledNode->next = newItem;
         newItem->next = NULL;
     }
 
     bool compareArray(int arr_one[], int arr_two[]){
-        for (int i = 0; i < 10; ++i)
+        for (int iterator = 0; iterator < 10; ++iterator)
         {
-            if (arr_one[i] != arr_two[i])
+            if (arr_one[iterator] != arr_two[iterator])
             {
                 return false;
             }
         }
         return true;
     }
-    void deleteNode(int arr[]) {
-        Node* n = this;
-        while (n->next != NULL) {
-            if (compareArray(n->next->data, arr)) {
-                n->next = n->next->next;
+    void delete_unrolledNode(int givenArray[]) {
+        unrolledNode* current_unrolledNode = this;
+        while (current_unrolledNode->next != NULL) {
+            if (compareArray(current_unrolledNode->next->unrolledArray, givenArray)) {
+                current_unrolledNode->next = current_unrolledNode->next->next;
             }
             else {
-                n = n->next;
+                current_unrolledNode = current_unrolledNode->next;
             }
         }
     }
-    bool search(int arr[]){
-        Node* n = this;
-        if (n->next == NULL)
+    bool search(int givenArray[]){
+        unrolledNode* current_unrolledNode = this;
+        if (current_unrolledNode->next == NULL)
         {
-           if(compareArray(n->data,arr)){
+           if(compareArray(current_unrolledNode->unrolledArray,givenArray)){
             return true;
         } else {
-            n = n->next;
+            current_unrolledNode = current_unrolledNode->next;
         }}else {
-            while(n->next != NULL){
-                if(compareArray(n->data,arr)){
+            while(current_unrolledNode->next != NULL){
+                if(compareArray(current_unrolledNode->unrolledArray,givenArray)){
                     return true;
                 } else {
-                    n = n->next;
+                    current_unrolledNode = current_unrolledNode->next;
                 }
             }
         }
 
         return false;
     }
-    void insertAfter(int pos_arr[], int arr[]) {
-        Node* n = this;
-        while (n->next != NULL) {
-            if (compareArray(n->data,pos_arr)) {
-                Node* newItem = new Node(arr);
-                newItem->next = n->next;
-                n->next = newItem;
-                n = n->next;
+    void insert_at_position(int pos_arr[], int givenArray[]) {
+        unrolledNode* current_unrolledNode = this;
+        while (current_unrolledNode->next != NULL) {
+            if (compareArray(current_unrolledNode->unrolledArray,pos_arr)) {
+                unrolledNode* newItem = new unrolledNode(givenArray);
+                newItem->next = current_unrolledNode->next;
+                current_unrolledNode->next = newItem;
+                current_unrolledNode = current_unrolledNode->next;
             }
             else {
-                n = n->next;
+                current_unrolledNode = current_unrolledNode->next;
             }
         }
     }
-    void prepend(int arr[]) {
-        Node* n = this;
-        if (n->next == NULL) {
-            Node* newItem = new Node(n->data);
-            for (int i = 0; i < 10; ++i)
+    void insert_at_beginning(int givenArray[]) {
+        unrolledNode* current_unrolledNode = this;
+        if (current_unrolledNode->next == NULL) {
+            unrolledNode* newItem = new unrolledNode(current_unrolledNode->unrolledArray);
+            for (int iterator = 0; iterator < 10; ++iterator)
             {
-                n->data[i] = NULL;
+                current_unrolledNode->unrolledArray[iterator] = NULL;
             }
-            for (int i = 0; i < 10; ++i)
+            for (int iterator = 0; iterator < 10; ++iterator)
             {
-                if (arr[i] != NULL)
+                if (givenArray[iterator] != NULL)
                 {
-                    n->data[i] = arr[i];
+                    current_unrolledNode->unrolledArray[iterator] = givenArray[iterator];
                 }
             }
-            n->next = newItem;
+            current_unrolledNode->next = newItem;
         }
         else {
-            Node* newItem = new Node(n->data);
-            Node* origin = n;
+            unrolledNode* newItem = new unrolledNode(current_unrolledNode->unrolledArray);
+            unrolledNode* origin = current_unrolledNode;
             newItem->next = origin->next;
-            for (int i = 0; i < 10; ++i)
+            for (int iterator = 0; iterator < 10; ++iterator)
             {
-                n->data[i] = NULL;
+                current_unrolledNode->unrolledArray[iterator] = NULL;
             }
-            for (int i = 0; i < 10; ++i)
+            for (int iterator = 0; iterator < 10; ++iterator)
             {
-                if (arr[i] != NULL)
+                if (givenArray[iterator] != NULL)
                 {
-                    n->data[i] = arr[i];
+                    current_unrolledNode->unrolledArray[iterator] = givenArray[iterator];
                 }
             }
-            n->next = newItem;
+            current_unrolledNode->next = newItem;
         }
     }
 };
 
 int main() {
     int ar[10] = {5, 2, 3};
-    Node* head = new Node(ar);
+    unrolledNode* head = new unrolledNode(ar);
     int arr[10] = {5, 2, 4};
-    head->insertion(arr);
-    head->print_list();
+    head->insert_at_end(arr);
+    head->print_unrolled_list();
     int arrx[10] = {2,5};
-    head->insertAfter(ar, arrx);
+    head->insert_at_position(ar, arrx);
     int arry[10] = {999, 999};
-    head->prepend(arry);
-    head->print_list();
+    head->insert_at_beginning(arry);
+    head->print_unrolled_list();
     return 0;
 }
