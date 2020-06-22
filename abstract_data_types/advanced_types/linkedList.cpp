@@ -7,22 +7,22 @@ public:
     unrolledNode* next = NULL;
 
     unrolledNode(int givenArray[]) {
-        for (int iterator = 0; iterator < 10; ++iterator)
+        for (int arrKey = 0; arrKey < 10; ++arrKey)
         {
-            if (givenArray[iterator] != NULL)
+            if (givenArray[arrKey] != NULL)
             {
-                this->unrolledArray[iterator] = givenArray[iterator];
+                this->unrolledArray[arrKey] = givenArray[arrKey];
             }
         }
     }
     void print_unrolled_list(){
         unrolledNode* current_unrolledNode = this;
         while (current_unrolledNode != NULL){
-            for (int iterator = 0; iterator < 10; ++iterator)
+            for (int arrKey = 0; arrKey < 10; ++arrKey)
             {
-                if (current_unrolledNode->unrolledArray[iterator] != NULL)
+                if (current_unrolledNode->unrolledArray[arrKey] != NULL)
                 {
-                    cout << current_unrolledNode->unrolledArray[iterator] << " ";
+                    cout << current_unrolledNode->unrolledArray[arrKey] << " ";
                 }
             }
 
@@ -42,9 +42,9 @@ public:
     }
 
     bool compareArray(int arr_one[], int arr_two[]){
-        for (int iterator = 0; iterator < 10; ++iterator)
+        for (int arrKey = 0; arrKey < 10; ++arrKey)
         {
-            if (arr_one[iterator] != arr_two[iterator])
+            if (arr_one[arrKey] != arr_two[arrKey])
             {
                 return false;
             }
@@ -100,15 +100,15 @@ public:
         unrolledNode* current_unrolledNode = this;
         if (current_unrolledNode->next == NULL) {
             unrolledNode* newItem = new unrolledNode(current_unrolledNode->unrolledArray);
-            for (int iterator = 0; iterator < 10; ++iterator)
+            for (int arrKey = 0; arrKey < 10; ++arrKey)
             {
-                current_unrolledNode->unrolledArray[iterator] = NULL;
+                current_unrolledNode->unrolledArray[arrKey] = NULL;
             }
-            for (int iterator = 0; iterator < 10; ++iterator)
+            for (int arrKey = 0; arrKey < 10; ++arrKey)
             {
-                if (givenArray[iterator] != NULL)
+                if (givenArray[arrKey] != NULL)
                 {
-                    current_unrolledNode->unrolledArray[iterator] = givenArray[iterator];
+                    current_unrolledNode->unrolledArray[arrKey] = givenArray[arrKey];
                 }
             }
             current_unrolledNode->next = newItem;
@@ -117,15 +117,15 @@ public:
             unrolledNode* newItem = new unrolledNode(current_unrolledNode->unrolledArray);
             unrolledNode* origin = current_unrolledNode;
             newItem->next = origin->next;
-            for (int iterator = 0; iterator < 10; ++iterator)
+            for (int arrKey = 0; arrKey < 10; ++arrKey)
             {
-                current_unrolledNode->unrolledArray[iterator] = NULL;
+                current_unrolledNode->unrolledArray[arrKey] = NULL;
             }
-            for (int iterator = 0; iterator < 10; ++iterator)
+            for (int arrKey = 0; arrKey < 10; ++arrKey)
             {
-                if (givenArray[iterator] != NULL)
+                if (givenArray[arrKey] != NULL)
                 {
-                    current_unrolledNode->unrolledArray[iterator] = givenArray[iterator];
+                    current_unrolledNode->unrolledArray[arrKey] = givenArray[arrKey];
                 }
             }
             current_unrolledNode->next = newItem;
@@ -134,15 +134,48 @@ public:
 };
 
 int main() {
-    int ar[10] = {5, 2, 3};
-    unrolledNode* head = new unrolledNode(ar);
-    int arr[10] = {5, 2, 4};
-    head->insert_at_end(arr);
+    cout << "Unrolled Linked List!" << endl;
+    cout << "Insert 10 Records:";
+    int arr0[10] = {5, 2, 3};
+    unrolledNode* head = new unrolledNode(arr0);
+    int arr1[10] = {5, 2, 4, 21, 423, 91774, 21312, 0, 021};
+    head->insert_at_end(arr1);
+    int arr2[10] = {2, 5, 321321, 9876, 2112, 698};
+    head->insert_at_position(arr0, arr2);
+    int arr3[10] = {412, 20, 98, 56416, 10};
+    head->insert_at_end(arr3);
     head->print_unrolled_list();
-    int arrx[10] = {2,5};
-    head->insert_at_position(ar, arrx);
-    int arry[10] = {999, 999};
-    head->insert_at_beginning(arry);
+    cout << "\n\n\nUpdate 1!" << endl;
+    int arr4[10] = {023 };
+    head->insert_at_beginning(arr4);
+    int arr5[10] = {945, 1235, 874, 0356, 8132};
+    head->insert_at_end(arr5);
+    int arr6[10] = {321, 76, 425, 1320};
+    head->insert_at_end(arr6);
+    int arr7[10] = {0, 874, 6510, 52, 58, 4110, 18, 185, 10};
+    head->insert_at_end(arr7);
+    int arr8[10] = {0, 10, 2, 51, 68, 181, 31, 201};
+    head->insert_at_position(arr3, arr8);
+    int arr9[10] = {87, 012, 415, 987, 11, 012, 12, 56, 31, 012};
+    head->insert_at_beginning(arr9);
     head->print_unrolled_list();
+    cout << "\n\n\nUpdate 2!" << endl;
+    head->delete_unrolledNode(arr4);
+    head->delete_unrolledNode(arr7);
+    head->print_unrolled_list();
+    cout << "\n\n\nSearch!" << endl;
+    cout << "Search for (0, 10, 2, 51, 68, 181, 31, 201):" << endl;
+    int searchArray[10] = { 0, 10, 2, 51, 68, 181, 31, 201 };
+    if (head->search(searchArray)) {
+        cout << "Found! :D";
+    }
+    else "Not Found! :( , Better luck next time!";
+    cout << "\nSearch for (1, 2, 3, 4, 5):" << endl;
+    int searchArray1[10] = {1, 2, 3, 4, 5};
+    if (head->search(searchArray1)) {
+        cout << "Found! :D";
+    }
+    else "Not Found! :( , Better luck next time!";
+
     return 0;
 }
